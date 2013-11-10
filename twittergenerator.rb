@@ -141,24 +141,21 @@ module TrendsAgainstHumanity
          return text
       end
 
-      def generate_twitter_text(black_deck, white_deck)
+      def generate_phrase
+         deck_name = DeckSelector.new.select_deck
+
+         black_deck = get_black_deck(deck_name)
+
          # pick a card, any card
          black_card = black_deck.sample
+
+         # get the white deck (trends) appropriate for the card we picked.
+         white_deck = get_white_deck(black_card.woeid)
+
          # pick the right number of white cards to go with it
          white_cards = white_deck.sample(black_card.pick)
 
          return render_for_twitter(black_card, white_cards)
-      end
-
-      def generate_phrase
-         deck_name = DeckSelector.new.select_deck
-
-         # If we picked the 'canada' deck, then use the trends in Canada instead of US.
-         woeid = (deck_name == "canada" ? WOEID_CANADA : WOEID_UNITED_STATES)
-
-         black_deck = get_black_deck(deck_name)
-         white_deck = get_white_deck(woeid)
-         return generate_twitter_text(black_deck, white_deck)
       end
 
       def generate

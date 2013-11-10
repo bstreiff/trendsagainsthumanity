@@ -49,19 +49,22 @@ module TrendsAgainstHumanity
          weights = Hash.new
 
          # For the base set and the expansions, the weight is the number of cards
-         # in the set.
-         weights["base"] = 89
-         weights["1stexp"] = 20
-         weights["2ndexp"] = 25
-         weights["3rdexp"] = 25
+         # in the set. For everything except for the base set, we multiply by two;
+         # this offsets the 'double-counting' for most of the cards that are shared
+         # between the US and UK sets.
+         weights["base_us"] = 89
+         weights["base_uk"] = 89
+         weights["1stexp"] = 20 * 2
+         weights["2ndexp"] = 25 * 2
+         weights["3rdexp"] = 25 * 2
 
-         # The canada set is special. Normally, it has a weight of 9.
-         # However, on Canada Day, we double the weight.
+         # The canada set is special. It has 9 card, for a weight of 18.
+         # However, on Canada Day, we double the weight again.
 
          if is_canada_day(today) then
-            weights["canada"] = 18
+            weights["canada"] = 9 * 4
          else
-            weights["canada"] = 9
+            weights["canada"] = 9 * 2
          end
 
          # The holiday set is also special. It only gets added if we are twenty days
@@ -69,7 +72,7 @@ module TrendsAgainstHumanity
          # (This gives us effectively a ~20% chance on Christmas day.)
          days_left = days_until_christmas(today)
          if (days_left <= 20) then
-            weights["holiday"] = (20 - days_left)*2
+            weights["holiday"] = (20 - days_left)*4
          end
 
          @weights = weights
