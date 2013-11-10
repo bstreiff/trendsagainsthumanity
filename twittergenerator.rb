@@ -161,7 +161,7 @@ module TrendsAgainstHumanity
       end
 
       def generate
-         cfg = ConfigReader.new("/home/brandon/.trendsagainsthumanity.cfg")
+         cfg = ConfigReader.new
 
          Twitter.configure do |config|
             config.consumer_key = cfg.consumer_key
