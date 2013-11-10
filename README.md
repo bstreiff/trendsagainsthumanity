@@ -1,4 +1,5 @@
-h1. Trends Against Humanity
+Trends Against Humanity
+=======================
 
 An experiment in blending Cards Against Humanity ("a free party game for
 horrible people") with Twitter ("a free microblogging service for horrible
@@ -11,6 +12,7 @@ It is running on Twitter as @trendagainst:
 
    https://twitter.com/trendagainst
 
-h2. Legal
+Legal
+-----
 
 See the LICENSE file for more details.
