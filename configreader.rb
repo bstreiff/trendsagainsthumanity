@@ -14,7 +14,7 @@ require "rexml/document"
 
 module TrendsAgainstHumanity
    class ConfigReader
-      def initialize(filename)
+      def initialize(filename = "login.cfg")
          file = File.new(filename)
          doc = REXML::Document.new(file);
 

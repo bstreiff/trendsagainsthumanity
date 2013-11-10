@@ -16,7 +16,7 @@ require "twitter"
 require "oauth"
 
 # Read config for consumer_key and consumer_secret.
-cfg = TrendsAgainstHumanity::ConfigReader.new("~/.trendsagainsthumanity.cfg")
+cfg = TrendsAgainstHumanity::ConfigReader.new
 
 Twitter.configure do |config|
    config.consumer_key = cfg.consumer_key
