@@ -135,6 +135,7 @@ module TrendsAgainstHumanity
          text.gsub!(/&reg;/,    codepoint('\u00ae'))
          text.gsub!(/&lsaquo;/, codepoint('\u2039'))
          text.gsub!(/&rsaquo;/, codepoint('\u203a'))
+         text.gsub!(/&iacute;/, codepoint('\u00ed'))
          text.gsub!(/&amp;/, '&')
 
          return text
