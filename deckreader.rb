@@ -13,9 +13,16 @@ module TrendsAgainstHumanity
 
          @deck = []
 
+         if !doc.root.attributes["woeid"].nil? then
+            base_woeid = 1 # "World"
+         else
+            base_woeid = doc.root.attributes["woeid"].to_i
+         end
+
          doc.root.each_element("card") do |card|
             pick = 0
             draw = 0
+            woeid = 0
 
             if card.attributes["pick"].nil? then
                # If there's no 'pick' attribute, then determine it by looking at the number of <blank>s in the text.         
@@ -46,12 +53,18 @@ module TrendsAgainstHumanity
                draw = card.attributes["draw"].to_i
             end
 
+            if card.attributes["woeid"].nil? then
+               woeid = base_woeid
+            else
+               woeid = card.attributes["woeid"].to_i
+            end
+
             text = ""
             card.each do |child|
                text = text + child.to_s
             end
 
-            @deck << BlackCard.new(text, draw, pick)
+            @deck << BlackCard.new(text, draw, pick, woeid)
          end
       end
 
