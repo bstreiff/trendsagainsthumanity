@@ -13,7 +13,7 @@ module TrendsAgainstHumanity
 
          @deck = []
 
-         if !doc.root.attributes["woeid"].nil? then
+         if doc.root.attributes["woeid"].nil? then
             base_woeid = 1 # "World"
          else
             base_woeid = doc.root.attributes["woeid"].to_i
