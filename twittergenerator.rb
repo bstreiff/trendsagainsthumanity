@@ -230,7 +230,20 @@ module TrendsAgainstHumanity
 
          # Try to post it!
          if (!@dry_run)
-            Twitter.update(phrase)
+            attempts = 0
+            loop do
+               break if attempts > 3
+
+               begin
+                  Twitter.update(phrase)
+               rescue Twitter::Error::ServiceUnavailable => error
+                  # over capacity, probably! Wait one minute and try again.
+                  attempts = attempts + 1
+                  sleep(1.0)
+               end
+
+               break
+            end
          else
             # If we're not posting to twitter, then output to stdout.
             puts phrase
