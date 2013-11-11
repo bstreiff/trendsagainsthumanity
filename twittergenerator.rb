@@ -17,6 +17,9 @@ module TrendsAgainstHumanity
    WOEID_WORLD = 1
    WOEID_UNITED_STATES = 23424977
    WOEID_CANADA = 23424775
+   WOEID_UNITED_KINGDOM = 23424975
+
+   USED_RECENTLY_FILE = 'usedrecently.cfg'
 
    class TwitterGenerator
       def initialize(dry_run = true)
@@ -61,31 +64,51 @@ module TrendsAgainstHumanity
                   deck << WhiteCard.new(t.name)
                end
             else
-               # Populate with dummy data. This is a snapshot of what the trends
-               # were on the morning of 10 Nov 2013, so that repeated test runs
-               # don't burn through the API limit.
-               if (woeid == WOEID_CANADA) then
-                  deck << WhiteCard.new("#EMAzing")
-                  deck << WhiteCard.new("#voteaustinmahone")
-                  deck << WhiteCard.new("Rememberance Day")
-                  deck << WhiteCard.new("#PeoplesChoice")
-                  deck << WhiteCard.new("#iPad")
-                  deck << WhiteCard.new("#music")
-                  deck << WhiteCard.new("Christmas")
-                  deck << WhiteCard.new("Justin Bieber")
-                  deck << WhiteCard.new("Canucks")
-                  deck << WhiteCard.new("Thor")
-               else
-                  deck << WhiteCard.new("#voteaustinmahone")
-                  deck << WhiteCard.new("#EMAzing")
-                  deck << WhiteCard.new("Veterans Day")
-                  deck << WhiteCard.new("Typhoon Haiyan")
-                  deck << WhiteCard.new("#iPad")
-                  deck << WhiteCard.new("#music")
-                  deck << WhiteCard.new("#tcot")
-                  deck << WhiteCard.new("Philippines")
-                  deck << WhiteCard.new("Christmas")
+               # Populate with dummy data.
+               if (woeid == WOEID_UNITED_STATES) then
+                  deck << WhiteCard.new("Bald Eagles")
+                  deck << WhiteCard.new("SUVs")
+                  deck << WhiteCard.new("Gigantic Trucks")
+                  deck << WhiteCard.new("Guns")
+                  deck << WhiteCard.new("Cars")
+                  deck << WhiteCard.new("Explosions")
+                  deck << WhiteCard.new("Liberty")
+                  deck << WhiteCard.new("Barack Obama")
                   deck << WhiteCard.new("Marines")
+                  deck << WhiteCard.new("Apple Pie")
+               elsif (woeid == WOEID_CANADA)
+                  deck << WhiteCard.new("Justin Bieber")
+                  deck << WhiteCard.new("Stephen Harper")
+                  deck << WhiteCard.new("Mounties")
+                  deck << WhiteCard.new("The Molson Muscle")
+                  deck << WhiteCard.new("Quebec Sepratists")
+                  deck << WhiteCard.new("Hockey")
+                  deck << WhiteCard.new("The Leafs")
+                  deck << WhiteCard.new("Tim Horton")
+                  deck << WhiteCard.new("Canucks")
+                  deck << WhiteCard.new("Rob Ford")
+               elsif (woeid == WOEID_UNITED_KINGDOM)
+                  deck << WhiteCard.new("Lorries")
+                  deck << WhiteCard.new("Lifts")
+                  deck << WhiteCard.new("Loos")
+                  deck << WhiteCard.new("Favourites")
+                  deck << WhiteCard.new("Victoria Beckham")
+                  deck << WhiteCard.new("Queen Elizabeth II")
+                  deck << WhiteCard.new("Scotland")
+                  deck << WhiteCard.new("The Welsh")
+                  deck << WhiteCard.new("Dickens")
+                  deck << WhiteCard.new("Arthur Conan Doyle")
+               else
+                  deck << WhiteCard.new("Music")
+                  deck << WhiteCard.new("People")
+                  deck << WhiteCard.new("Stuff")
+                  deck << WhiteCard.new("Things")
+                  deck << WhiteCard.new("Objects")
+                  deck << WhiteCard.new("Generics")
+                  deck << WhiteCard.new("Shows")
+                  deck << WhiteCard.new("Gadgets")
+                  deck << WhiteCard.new("Widgets")
+                  deck << WhiteCard.new("Matter")
                end
             end
 
@@ -141,13 +164,30 @@ module TrendsAgainstHumanity
          return text
       end
 
-      def generate_phrase
-         deck_name = DeckSelector.new.select_deck
+      def generate_phrase(usedrecently)
+         # keep picking cards until we find one we haven't used recently.
+         black_deck = nil
+         black_card = nil
+         attempts = 0
 
-         black_deck = get_black_deck(deck_name)
+         loop do
+            deck_name = DeckSelector.new.select_deck
+            black_deck = get_black_deck(deck_name)
+            black_card = black_deck.sample
 
-         # pick a card, any card
-         black_card = black_deck.sample
+            # if we haven't used it before, go ahead.
+            break if usedrecently.index(black_card.text) == nil
+
+            # if we've tried ten times and each time was something we've used before...
+            # well, that's unfortunate, we'll just use it anyway.
+            attempts = attempts + 1
+            break if (attempts > 10)
+         end
+
+         # save this so we don't use it again for a while
+         open(USED_RECENTLY_FILE, 'a') do |f|
+            f.puts black_card.text
+         end
 
          # get the white deck (trends) appropriate for the card we picked.
          white_deck = get_white_deck(black_card.woeid)
@@ -161,6 +201,13 @@ module TrendsAgainstHumanity
       def generate
          cfg = ConfigReader.new
 
+         usedrecently = []
+         if File.exists?(USED_RECENTLY_FILE) then
+            File.readlines(USED_RECENTLY_FILE).each do |line|
+               usedrecently << line.strip
+            end
+         end
+
          Twitter.configure do |config|
             config.consumer_key = cfg.consumer_key
             config.consumer_secret = cfg.consumer_secret
@@ -171,7 +218,7 @@ module TrendsAgainstHumanity
          # Generate phrases until we get one under 140 characters.
          phrase = ""
          loop do
-            phrase = generate_phrase
+            phrase = generate_phrase(usedrecently)
 
             # Get the length, in characters. String.length isn't correct for Unicode
             # strings in Ruby 1.8.
