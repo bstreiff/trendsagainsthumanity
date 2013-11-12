@@ -44,7 +44,7 @@ module TrendsAgainstHumanity
       end
 
       def initialize
-         today = Date.new(2012,12,25) #Date.today
+         today = Date.today
 
          weights = Hash.new
 
