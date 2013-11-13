@@ -20,6 +20,7 @@ module TrendsAgainstHumanity
    WOEID_UNITED_KINGDOM = 23424975
 
    USED_RECENTLY_FILE = 'usedrecently.cfg'
+   USED_RECENTLY_TRENDS_FILE = 'usedrecently-trends.cfg'
 
    class TwitterGenerator
       def initialize(dry_run = true)
@@ -164,7 +165,7 @@ module TrendsAgainstHumanity
          return text
       end
 
-      def generate_phrase(usedrecently)
+      def generate_phrase(usedrecently, usedrecently_trends)
          # keep picking cards until we find one we haven't used recently.
          black_deck = nil
          black_card = nil
@@ -193,7 +194,23 @@ module TrendsAgainstHumanity
          white_deck = get_white_deck(black_card.woeid)
 
          # pick the right number of white cards to go with it
-         white_cards = white_deck.sample(black_card.pick)
+         white_cards = nil
+         attempts = 0
+         loop do
+            white_cards = white_deck.sample(black_card.pick)
+
+            break if (usedrecently_trends.count == 0) || (usedrecently_trends & white_cards.map { |x| x.text } == [])
+
+            attempts = attempts + 1
+            break if (attempts > 10)
+         end
+
+         # save the trends so we don't use them again for a while
+         open(USED_RECENTLY_TRENDS_FILE, 'a') do |f|
+            white_cards.each do |c|
+               f.puts c.text
+            end
+         end
 
          return render_for_twitter(black_card, white_cards)
       end
@@ -208,6 +225,13 @@ module TrendsAgainstHumanity
             end
          end
 
+         usedrecently_trends = []
+         if File.exists?(USED_RECENTLY_TRENDS_FILE) then
+            File.readlines(USED_RECENTLY_TRENDS_FILE).each do |line|
+               usedrecently_trends << line.strip
+            end
+         end
+
          Twitter.configure do |config|
             config.consumer_key = cfg.consumer_key
             config.consumer_secret = cfg.consumer_secret
@@ -218,7 +242,7 @@ module TrendsAgainstHumanity
          # Generate phrases until we get one under 140 characters.
          phrase = ""
          loop do
-            phrase = generate_phrase(usedrecently)
+            phrase = generate_phrase(usedrecently, usedrecently_trends)
 
             # Get the length, in characters. String.length isn't correct for Unicode
             # strings in Ruby 1.8.
