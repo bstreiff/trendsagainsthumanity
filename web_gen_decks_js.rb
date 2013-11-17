@@ -58,8 +58,11 @@ decks = Hash.new
 
 deck_names.each do |d|
    decks[d] = read_deck_file("decks/#{d}.xml")
+
+   decks[d]["icon"] = "base"
+   # I have icons for these.
+   decks[d]["icon"] = d if (d == "1stexp" || d == "2ndexp" || d == "3rdexp")
 end
 
 str = MultiJson.dump(decks)
 puts "var decks = #{str}"
-
