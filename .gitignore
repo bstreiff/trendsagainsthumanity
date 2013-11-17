@@ -2,3 +2,5 @@ login.cfg
 usedrecently.cfg
 usedrecently-trends.cfg
 state.db
+web/js/decks.js
+web/js/trends.js
