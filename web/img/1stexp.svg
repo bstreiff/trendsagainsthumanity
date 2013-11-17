@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" height="22.397" width="30.496" version="1.1">
+<g transform="translate(-88.154667,-168.73018)">
+<rect style="stroke-linejoin:miter;fill-rule:evenodd;stroke:#ffffff;stroke-linecap:butt;stroke-width:1px;fill:#000000;" transform="matrix(0.9523958,-0.3048643,0.3048643,0.9523958,0,0)" height="15" width="15" y="192.73" x="31.53"/>
+<rect style="stroke-linejoin:miter;fill-rule:evenodd;stroke:#000000;stroke-linecap:butt;stroke-width:1px;fill:#ffffff;" height="14.8" width="14.8" y="171.71" x="95.676"/>
+<rect style="stroke-linejoin:miter;fill-rule:evenodd;stroke:#000000;stroke-linecap:butt;stroke-width:1px;fill:#ffffff;" transform="matrix(0.9523958,0.3048643,-0.3048643,0.9523958,0,0)" height="14.8" width="14.8" y="131.95" x="151.24"/>
+<g style="fill:#000000;" transform="matrix(1.0037342,0.32129786,-0.28927127,0.90368322,0,0)">
+<path d="m152.25,150.66,0-7.5954-1.2261,0c-0.0434,0.28936-0.13383,0.53169-0.27126,0.72699-0.13745,0.19532-0.30744,0.35446-0.50998,0.47743-0.19532,0.11575-0.41956,0.19894-0.67274,0.24957-0.24595,0.0434-0.50275,0.0615-0.7704,0.0542v1.161h1.9097v4.9262h1.5408"/>
+</g>
+</g>
+</svg>

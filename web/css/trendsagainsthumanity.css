@@ -1,0 +1,114 @@
+body {
+   font-family: "helvetica neue", helvetica, sans-serif;
+   margin: 0;
+   padding: 0;
+}
+
+div.card {
+   position: relative;
+   border-radius: 2.5mm;
+   border: 1px solid #000;
+   width: 62.5mm;
+   height: 87.5mm;
+   box-shadow: 2mm 2mm 3mm #888;
+
+   margin: 4mm;
+   display: inline-block;
+   text-align: left;
+}
+
+div.card div.text {
+   font-family: "helvetica neue", helvetica, sans-serif;
+   font-weight: bold;
+   font-size: 5mm;
+   position: absolute;
+   left: 6mm;
+   right: 6mm;
+   top: 6.5mm;
+}
+
+div#playfield {
+   margin-left: auto;
+   margin-right: auto;
+   text-align: center;
+}
+
+div.blackcard {
+   background-color: #000;
+   color: #fff;
+}
+
+div.whitecard {
+   background-color: #fff;
+   color: #000;
+}
+
+div.whitecard a { text-decoration: none; color: black; }
+div.whitecard a:hover { text-decoration: underline; }
+
+p a { text-decoration: none; color: #00acee; font-weight: bold; }
+p a:hover { text-decoration: underline; color: #0080a6; }
+
+div.card div.logo {
+   font-family: "helvetica neue", helvetica, sans-serif;
+   font-size: 2mm;
+
+   position: absolute;
+   bottom: 7.5mm;
+   left: 6mm;
+}
+
+div.card div.pick {
+   font-family: "helvetica neue", helvetica, sans-serif;
+   font-size: 2.9mm;
+   text-transform: uppercase;
+   text-align: right;
+   font-weight: bold;
+
+   position: absolute;
+   right: 6mm;
+   bottom: 6.5mm;
+}
+
+div.card div.pick span.digit {
+   font-family: "helvetica neue", helvetica, 'arial unicode ms', sans-serif;
+   font-size: 6mm;
+   font-weight: normal;
+   vertical-align: middle;
+}
+
+div#exposition, div#footer
+{
+   margin-left: auto;
+   margin-right: auto;
+   margin-top: 1em;
+   margin-bottom: 1em;
+   min-width: 40em;
+   max-width: 80em;
+   padding-left: 1em;
+   padding-right: 2em;
+   border: 1px black solid;
+   box-shadow: 2mm 2mm 3mm #888;
+}
+
+div#footer p
+{
+   font-size: small;
+   color: #444;
+}
+
+div#header
+{
+   background-color: #000;
+   color: #fff;
+   padding-left: 3em;
+   padding-right: 3em;
+}
+
+div#header h1
+{
+   margin: 0;
+}
+
+
+h1, h2, h3 { text-align: center; }
