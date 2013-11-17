@@ -26,7 +26,6 @@ woeids.each do |woeid|
       :woeid => woeid);
 
    trends.each do |trend|
-      puts "adding trend #{trend.name} for woeid #{woeid}"
       state.add_top_trend(trend, woeid);
    end
 end
