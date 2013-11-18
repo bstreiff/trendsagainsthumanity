@@ -63,13 +63,13 @@ module TrendsAgainstHumanity
       # This memoizes, because it's possible (although unlikely) that we might need
       # to generate multiple phrases. When we do that, we don't want to re-request
       # the trend list from Twitter if we don't have to.
-      def get_white_deck(woeid = WOEID_WORLD)
+      def get_white_deck(woeid = WOEID_WORLD, ignore_list = [])
          if (!@white_deck.has_key?(woeid)) then
             options = Hash.new
             options[:dummy]  = @dry_run
             options[:client] = @client
             options[:woeid]  = woeid
-            options[:ignore] = @state.get_recently_used_trends({:count => 30})
+            options[:ignore] = ignore_list
 
             trends = TrendGetter.new.get_trends(options);
             deck = trends.map do |t| WhiteCard.new(t.name) end
@@ -132,7 +132,7 @@ module TrendsAgainstHumanity
          black_card = nil
          attempts = 0
 
-         recent_questions = @state.get_recently_used_questions({:count => 15})
+         recent_questions = @state.get_recently_used_questions({:count => 40})
 
          loop do
             deck_name = DeckSelector.new.select_deck
@@ -152,12 +152,12 @@ module TrendsAgainstHumanity
          @state.add_recently_used_question(black_card.text)
 
          # get the white deck (trends) appropriate for the card we picked.
-         white_deck = get_white_deck(black_card.woeid)
+         recent_trends = @state.get_recently_used_trends({:count => 40})
+         white_deck = get_white_deck(black_card.woeid, recent_trends)
 
          # pick the right number of white cards to go with it
          white_cards = nil
          attempts = 0
-         recent_trends = @state.get_recently_used_trends({:count => 30})
          loop do
             white_cards = white_deck.sample(black_card.pick)
 
