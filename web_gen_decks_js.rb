@@ -52,7 +52,7 @@ def read_deck_file(filename)
    return deck;
 end
 
-deck_names = ["base_us", "base_uk", "1stexp", "2ndexp", "3rdexp", "holiday", "canada"];
+deck_names = ["base_us", "base_uk", "1stexp", "2ndexp", "3rdexp", "4thexp", "holiday", "canada"];
 
 decks = Hash.new
 
