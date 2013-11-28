@@ -61,7 +61,7 @@ deck_names.each do |d|
 
    decks[d]["icon"] = "base.svg"
    # I have icons for these.
-   decks[d]["icon"] = "#{d}.svg" if (d == "1stexp" || d == "2ndexp" || d == "3rdexp")
+   decks[d]["icon"] = "#{d}.svg" if (d == "1stexp" || d == "2ndexp" || d == "3rdexp" || d == "4thexp")
 end
 
 str = MultiJson.dump(decks)
