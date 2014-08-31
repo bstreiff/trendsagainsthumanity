@@ -17,8 +17,15 @@ I might make a 'real' website at some point, but for now this will have to do.
 Running it
 ----------
 
-I've only tested this with Ruby 1.8.7, because that's what I have on Ubuntu 12.04.
-I should probably move to at least 1.9.
+I originally wrote this against Ruby 1.8.7 (because that was what was on Ubuntu 12.04).
+I've since patched it up to work with 1.9.3 (because that's what's on Ubuntu 14.04).
+
+However, because the Ruby community seems to have no problems with changing integral
+functionality such as 'require' outright, functions being removed (Date.jd_to_wday
+disappeared at some point), and changes in third-party modules (the Twitter gem
+apparently does not believe in a stable API), I find the state of the Ruby community
+to be terrible for making any sort of guarantees about long-term viability of any
+software written in it.
 
 It you want to try running it yourself, you'll need to register an application with
 Twitter in order to get a consumer key and such. When you have those things, create
