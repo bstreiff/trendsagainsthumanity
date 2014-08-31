@@ -32,8 +32,8 @@ module TrendsAgainstHumanity
             @client = Twitter::Client.new({
                :consumer_key => cfg.consumer_key,
                :consumer_secret => cfg.consumer_secret,
-               :oauth_token => cfg.oauth_token,
-               :oauth_token_secret => cfg.oauth_token_secret})
+               :access_token => cfg.oauth_token,
+               :access_token_secret => cfg.oauth_token_secret})
          end
 
       end
