@@ -4,14 +4,14 @@
 
 require "rubygems"
 
-require "backports/1.9.1/array/sample"
-require "common/cardtypes"
-require "common/configreader"
-require "common/deckreader"
-require "common/deckselector"
-require "common/statereader"
-require "common/woeid"
-require "common/trendgetter"
+#require "backports/1.9.1/array/sample"
+require_relative "cardtypes"
+require_relative "configreader"
+require_relative "deckreader"
+require_relative "deckselector"
+require_relative "statereader"
+require_relative "woeid"
+require_relative "trendgetter"
 require "twitter"
 
 module TrendsAgainstHumanity

@@ -5,7 +5,7 @@
 # See LICENSE for license details.
 
 require "optparse"
-require "common/twittergenerator"
+require_relative "common/twittergenerator"
 
 options = {}
 

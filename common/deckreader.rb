@@ -3,7 +3,7 @@
 # See LICENSE for license details.
 
 require "rexml/document"
-require "common/cardtypes"
+require_relative "cardtypes"
 
 module TrendsAgainstHumanity
    class DeckReader

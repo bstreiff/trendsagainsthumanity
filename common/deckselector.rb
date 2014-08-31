@@ -14,7 +14,7 @@ module TrendsAgainstHumanity
          # Canada Day is 1 Jul, unless that date falls on a Sunday, in which
          # case it is observed on 2 Jul.
 
-         weekday = Date.jd_to_wday(d.jd)
+         weekday = (d.jd + 1) % 7
          is_sunday = (weekday == 0)
          is_monday = (weekday == 1)
 
