@@ -12,7 +12,7 @@ require "twitter"
 
 cfg = TrendsAgainstHumanity::ConfigReader.new
 
-client = Twitter::Client.new({
+client = Twitter::REST::Client.new({
    :consumer_key => cfg.consumer_key,
    :consumer_secret => cfg.consumer_secret});
 
