@@ -77,7 +77,7 @@ SQL
             "name" => trend.name,
             "woeid" => woeid,
             "query" => trend.query,
-            "url" => trend.url);
+            "url" => trend.url.to_s);
       end
 
       attr_reader :database      
