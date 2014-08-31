@@ -5,9 +5,9 @@
 # See LICENSE for license details.
 
 require "rubygems"
-require "common/configreader"
-require "common/statereader"
-require "common/trendgetter"
+require_relative "common/configreader"
+require_relative "common/statereader"
+require_relative "common/trendgetter"
 require "twitter"
 
 cfg = TrendsAgainstHumanity::ConfigReader.new

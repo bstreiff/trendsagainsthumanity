@@ -2,7 +2,7 @@
 #
 # See LICENSE for license details.
 
-require "common/woeid"
+require_relative "woeid"
 
 module TrendsAgainstHumanity
 
