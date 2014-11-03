@@ -57,7 +57,8 @@ module TrendsAgainstHumanity
          weights["1stexp"] = 20 * 2
          weights["2ndexp"] = 25 * 2
          weights["3rdexp"] = 25 * 2
-         weights["4thexp"] = 30
+         weights["4thexp"] = 30 * 2
+         weights["5thexp"] = 25 * 2
 
          # The canada set is special. It has 9 card, for a weight of 18.
          # However, on Canada Day, we double the weight again.

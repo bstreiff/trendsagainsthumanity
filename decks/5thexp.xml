@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!--
+   Cards Against Humanity black card list, from the fifth expansion.
+
+   Derived from work copyright by Cards Against Humanity LLC,
+   Licensed under Creative Commons Attribution-NonCommercial-ShareAlike 2.0
+   Generic (CC BY-NC-SA 2.0)
+-->
+<deck name="5rdexp" woeid="23424977" version="1.0">
+<card>And today's soup is Cream of <blank /></card>
+<card>Now in bookstores: &ldquo;The Audacity of <blank />,&rdquo; by Barack Obama.</card>
+<card>WHOOO! God damn I love <blank /></card>
+<card>Do you lack energy? Does it sometimes feel like the whole world is <blank />?<br />Zoloft.</card>
+<card>Well if <blank /> is good enough for <blank />, it's good enough for me.</card>
+<card>Yo' mama's so fat she <blank /></card>
+<card>What killed my boner?</card>
+<card>Don't forget! Beginning this week, Casual Friday will officially become &ldquo;<blank /> Friday.&rdquo;</card>
+<card>In his farewell address, George Washington famously warned Americans about the dangers of <blank />.</card>
+<!-- This one doesn't really work given the way we generate phrases: -->
+<!-- <card>Having the worst day EVER. #<blank /></card> -->
+<card>Get ready for the movie of the summer! One cop plays by the book. The other's only interested in one thing: <blank /></card>
+<card>What's making things awkward at the sauna?</card>
+<card>Life's pretty tough in the fast lane. That's why I never leave the house without <blank /></card>
+<card>Patient presents with <blank />. Likely a result of <blank /></card>
+<card>Hi MTV! My name is Kendra, I live in Malibu, I'm into <blank />, and I love to have a good time.</card>
+<card>Help me doctor, I've got <blank /> in my butt!</card>
+<card>Why am I broke?</card>
+<card>I don't mean to brag, but they call me the Michael Jordan of <blank /></card>
+<card>Heed my voice, mortals! I am the god of <blank />, and I will not tolerate <blank />!</card>
+<card>Armani suit: $1000. Dinner for two at that swanky restaurant: $300. The look on her face when you surprise her with <blank />: priceless.</card>
+<card>Here at the Academy for Gifted Children, we allow students to explore <blank /> at their own pace.</card>
+<card>Well what do you have to say for yourself, Casey? This is the third time you've been send to the principal's office for <blank />.</card>
+<card>In his new action comedy, Jackie Chan must fend off ninjas while also dealing with <blank />.</card>
+<card>Do the Dew with our most extreme flavor yet! Get ready for Mountain Dew <blank />!</card>
+<card>Hi, this is Jim from accounting. We noticed a $1200 charge labeled &ldquo;<blank />.&rdquo;. Can you explain?</card>
+</deck>

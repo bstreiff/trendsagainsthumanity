@@ -5,6 +5,7 @@ var deckinfo = [
    ["2ndexp", decks["2ndexp"].cards.length],
    ["3rdexp", decks["3rdexp"].cards.length],
    ["4thexp", decks["4thexp"].cards.length],
+   ["5thexp", decks["5thexp"].cards.length],
    ["canada", decks["canada"].cards.length],
    ["holiday", decks["holiday"].cards.length]
 ];
